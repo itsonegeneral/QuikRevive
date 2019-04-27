@@ -1,13 +1,18 @@
 package com.rstudio.gohelper;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.rstudio.gohelper.UserFragments.ResponsesFragment;
@@ -28,7 +33,16 @@ public class UserHomeActivity extends AppCompatActivity {
 
         navView = findViewById(R.id.navMenu_UserHome);
         navView.setOnNavigationItemSelectedListener(listener);
+        getPermissions();
 
+    }
+
+    private void getPermissions(){
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,6 +68,28 @@ public class UserHomeActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "Permission denied to read your Location , App Will not Work", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+    }
 
     private void setToolbar(){
         Toolbar toolbar = findViewById(R.id.tb_userHome);

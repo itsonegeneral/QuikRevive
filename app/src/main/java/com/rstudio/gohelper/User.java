@@ -1,5 +1,7 @@
 package com.rstudio.gohelper;
 
+import android.os.Parcel;
+
 public class User {
 
     private int age;
@@ -87,4 +89,6 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }

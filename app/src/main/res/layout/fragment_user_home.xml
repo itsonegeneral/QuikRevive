@@ -6,62 +6,225 @@
     tools:context=".UserFragments.UserHomeFragment">
 
 
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/pgBar_Home"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/user_icon" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pgBar_Home"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="-1dp"
+        android:orientation="vertical">
+
 
         <LinearLayout
-            android:layout_marginStart="3dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans"
-                android:text="Welcome ,"
-                android:textColor="#000" />
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/user_icon" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_userHomeEmailId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto"
-                    android:maxLines="1"
-                    android:paddingStart="5dp"
-                    android:text="srithik1999@gmail.com"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:fontFamily="@font/open_sans"
+                    android:text="Welcome ,"
+                    android:textColor="#000" />
 
-                <ImageView
-                    android:id="@+id/img_verifiedBadge"
-                    android:layout_width="wrap_content"
+             <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <TextView
+                     android:id="@+id/tv_userHomeName"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:ellipsize="end"
+                     android:fontFamily="@font/roboto"
+                     android:maxLines="1"
+                     android:paddingStart="5dp"
+                     android:text="srithik1999@gmail.com"
+                     android:textColor="#000"
+                     android:textSize="16sp" />
+
+                 <ImageView
+                     android:id="@+id/img_verifiedBadge"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:background="@drawable/ic_verified_user_green_24dp"
+                     android:visibility="gone" />
+
+             </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_userHomeVerifyStatus"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_verified_user_green_24dp" />
+                    android:paddingStart="5dp"
+                    android:text="Account is not verified, Verify" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_userHomeVerifyStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:text="Account is not verified" />
 
         </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="One Click Assist Call"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/colorPrimary" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/keralapolice" />
+
+                    <Button
+                        android:id="@+id/bt_callPolice"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/button_main_ripple"
+                        android:fontFamily="@font/roboto"
+                        android:text="Police"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/fireforce" />
+
+                    <Button
+                        android:id="@+id/bt_callFireforce"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/button_main_ripple"
+                        android:fontFamily="@font/roboto"
+                        android:text="FireForce"
+                        android:textColor="#fff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ambulance" />
+
+                    <Button
+                        android:id="@+id/bt_callAmbulance"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/button_main_ripple"
+                        android:fontFamily="@font/roboto"
+                        android:text="Ambulance"
+                        android:textColor="#fff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/vehicle" />
+
+                    <Button
+                        android:id="@+id/bt_callVehicleMovers"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/button_main_ripple"
+                        android:fontFamily="@font/roboto"
+                        android:text="Vehicle Movers"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

@@ -115,6 +115,8 @@ public class CreateUserActivity extends AppCompatActivity {
             etPhone.setError("Enter Phone");
         }else if(aadharno == 0 ){
             etAadharNo.setError("Enter Aadhar No");
+        }else if(String.valueOf(aadharno).length()<12) {
+            etAadharNo.setError("12 Digit Aadhar No");
         }else if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             etEmail.setError("Enter Valid Email");
         }else if(pass1.isEmpty()){
@@ -123,6 +125,8 @@ public class CreateUserActivity extends AppCompatActivity {
             etPass2.setError("Confirm Password");
         }else if(!pass1.equals(pass2)){
             etPass2.setError("Passwords Do not Match");
+        }else if(pass1.length()<6) {
+            etPass1.setError("Min 6 Chars");
         }else if(address.isEmpty()){
             etAddress.setError("Enter Address");
         }else if(pincode ==0 ){

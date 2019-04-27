@@ -44,6 +44,10 @@ public class UserLoginActivity extends AppCompatActivity {
         //Auto login if already signed in
         if(mUser!= null){
             Toast.makeText(this,"Logged in",Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(UserLoginActivity.this,UserHomeActivity.class));
+
+
         }
 
     }

@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rstudio.gohelper">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,11 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key"/>
         <activity
             android:name=".UserLoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,17 +35,19 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".UserLoginActivity"/>
+            android:parentActivityName=".UserLoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UserHomeActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CreateUserActivity"
             android:launchMode="singleTop"
+            android:parentActivityName=".UserLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SendRequestActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".UserLoginActivity"/>
+            android:parentActivityName=".UserHomeActivity"/>
     </application>
 
 </manifest>
