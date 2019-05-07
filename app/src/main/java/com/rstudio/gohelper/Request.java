@@ -1,31 +1,86 @@
 package com.rstudio.gohelper;
 
 public class Request {
+    private String requestId;
     private String senderId;
     private String receiverId;
     private String time;
+    private String requesttype;
     private String senderName;
     private String senderMessage;
-    private float positionX;
-    private float positionY;
+    private long senderPhone;
+    private String status;
+    private String senderOneSignalId;
+    private double positionX;
+    private double positionY;
 
-    public float getPositionX() {
+
+    public Request(String time, String requesttype, String senderMessage, String status) {
+        this.time = time;
+        this.requesttype = requesttype;
+        this.senderMessage = senderMessage;
+        this.status = status;
+    }
+
+    public String getSenderOneSignalId() {
+        return senderOneSignalId;
+    }
+
+
+    public long getSenderPhone() {
+        return senderPhone;
+    }
+
+    public void setSenderPhone(long senderPhone) {
+        this.senderPhone = senderPhone;
+    }
+
+    public void setSenderOneSignalId(String senderOneSignalId) {
+        this.senderOneSignalId = senderOneSignalId;
+    }
+
+    public double getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(float positionX) {
+    public String getRequesttype() {
+        return requesttype;
+    }
+
+    public void setRequesttype(String requesttype) {
+        this.requesttype = requesttype;
+    }
+
+    public void setPositionX(double positionX) {
         this.positionX = positionX;
     }
 
-    public float getPositionY() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(float positionY) {
+    public void setPositionY(double positionY) {
         this.positionY = positionY;
     }
 
-    public Request(){
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public Request() {
         //Empty Constructor
     }
 

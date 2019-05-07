@@ -19,6 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +33,7 @@ public class UserLoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private TextView tvForgotPass, tvCreateAccount, tvAdminogin;
+    private TextView tvForgotPass, tvCreateAccount;
     private Button btLogin;
     private EditText etUserName, etPassword;
     private ProgressBar pgBarLogin;
@@ -42,14 +47,42 @@ public class UserLoginActivity extends AppCompatActivity {
         setToolbar();
 
         //Auto login if already signed in
-        if(mUser!= null){
-            Toast.makeText(this,"Logged in",Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(UserLoginActivity.this,UserHomeActivity.class));
+        if (mUser != null) {
+            checkAdmin();
+            Toast.makeText(this, "Auto Login...", Toast.LENGTH_SHORT).show();
 
 
         }
 
+    }
+
+    private void checkAdmin() {
+        pgBarLogin.setVisibility(View.VISIBLE);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("admins").child(mAuth.getUid());
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(UserLoginActivity.this, "Admin Account", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(UserLoginActivity.this, AdminHomeActivity.class));
+                    btLogin.setEnabled(true);
+                    pgBarLogin.setVisibility(View.GONE);
+
+                } else {
+                    Toast.makeText(UserLoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(UserLoginActivity.this, UserHomeActivity.class));
+                    btLogin.setEnabled(true);
+                    pgBarLogin.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setListeners() {
@@ -72,11 +105,8 @@ public class UserLoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(UserLoginActivity.this, "Welcome !", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(UserLoginActivity.this, UserHomeActivity.class));
-                                finish();
-                                btLogin.setEnabled(true);
-                                pgBarLogin.setVisibility(View.GONE);
+                                checkAdmin();
+
                             } else {
                                 TextView forgot = findViewById(R.id.tv_forgotPasswordUser);
                                 forgot.setVisibility(View.VISIBLE);
@@ -93,9 +123,10 @@ public class UserLoginActivity extends AppCompatActivity {
         tvCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserLoginActivity.this,CreateUserActivity.class));
+                startActivity(new Intent(UserLoginActivity.this, CreateUserActivity.class));
             }
         });
+
     }
 
     private boolean checkUserInput() {
@@ -118,7 +149,6 @@ public class UserLoginActivity extends AppCompatActivity {
     private void setValues() {
         tvForgotPass = findViewById(R.id.tv_forgotPasswordUser);
         tvCreateAccount = findViewById(R.id.tv_createNewAccountUser);
-        tvAdminogin = findViewById(R.id.tv_adminLogin);
         btLogin = findViewById(R.id.bt_loginUser);
         etPassword = findViewById(R.id.et_passwordUser);
         etUserName = findViewById(R.id.et_usernameUser);

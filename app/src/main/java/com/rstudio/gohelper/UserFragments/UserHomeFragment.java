@@ -38,15 +38,15 @@ import com.rstudio.gohelper.User;
 public class UserHomeFragment extends Fragment {
 
     RelativeLayout layout;
-    private TextView tvUserName,tvVerifiedStatus;
+    private TextView tvUserName, tvVerifiedStatus;
     private ImageView verifyImage;
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
     private String userId;
-    private DatabaseReference ref ;
+    private DatabaseReference ref;
     private ProgressBar pgBar;
     private FirebaseUser user;
-    private Button btPolice,btAmbulance,btVehicle,btFireforce;
+    private Button btPolice, btAmbulance, btVehicle, btFireforce;
     private User userClass;
 
     public UserHomeFragment() {
@@ -64,7 +64,7 @@ public class UserHomeFragment extends Fragment {
         pgBar = layout.findViewById(R.id.pgBar_Home);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
-        ref= db.getReference("users");
+        ref = db.getReference("users");
         tvVerifiedStatus = layout.findViewById(R.id.tv_userHomeVerifyStatus);
         verifyImage = layout.findViewById(R.id.img_verifiedBadge);
         user = mAuth.getCurrentUser();
@@ -81,11 +81,11 @@ public class UserHomeFragment extends Fragment {
         return layout;
     }
 
-    private void setListeners(){
+    private void setListeners() {
         tvVerifiedStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+                try {
                     user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -101,7 +101,7 @@ public class UserHomeFragment extends Fragment {
                             alertDialog.show();
                         }
                     });
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
 
@@ -111,24 +111,30 @@ public class UserHomeFragment extends Fragment {
         btVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(getContext(),SendRequestActivity.class);
-               i.putExtra("requestcode","vehicle");
-               startActivity(i);
+                Intent i = new Intent(getContext(), SendRequestActivity.class);
+                i.putExtra("requestcode", "vehicle");
+                i.putExtra("username", userClass.getName());
+                i.putExtra("userphone", userClass.getPhone());
+                startActivity(i);
             }
         });
         btPolice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),SendRequestActivity.class);
-               i.putExtra("requestcode","police");
-               startActivity(i);
+                Intent i = new Intent(getContext(), SendRequestActivity.class);
+                i.putExtra("requestcode", "police");
+                i.putExtra("username", tvUserName.getText().toString());
+                i.putExtra("userphone", userClass.getPhone());
+                startActivity(i);
             }
         });
         btFireforce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),SendRequestActivity.class);
-                i.putExtra("requestcode","fireforce");
+                Intent i = new Intent(getContext(), SendRequestActivity.class);
+                i.putExtra("username", userClass.getName());
+                i.putExtra("userphone", userClass.getPhone());
+                i.putExtra("requestcode", "fireforce");
                 startActivity(i);
 
             }
@@ -137,8 +143,10 @@ public class UserHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getContext(),SendRequestActivity.class);
-                i.putExtra("requestcode","ambulance");
+                Intent i = new Intent(getContext(), SendRequestActivity.class);
+                i.putExtra("username", userClass.getName());
+                i.putExtra("userphone", userClass.getPhone());
+                i.putExtra("requestcode", "ambulance");
                 startActivity(i);
             }
         });
@@ -146,19 +154,19 @@ public class UserHomeFragment extends Fragment {
     }
 
 
-    private void loadData(){
+    private void loadData() {
         pgBar.setVisibility(View.VISIBLE);
         pgBar.setIndeterminate(true);
         userId = mAuth.getUid();
         ref.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     userClass = dataSnapshot.getValue(User.class);
                     tvUserName.setText(userClass.getName());
 
-                }else{
-                    Toast.makeText(getContext(),"NO DATA",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "NO DATA", Toast.LENGTH_SHORT).show();
                 }
                 pgBar.setVisibility(View.GONE);
             }
@@ -169,10 +177,10 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
-        if(user.isEmailVerified()){
+        if (user.isEmailVerified()) {
             tvVerifiedStatus.setVisibility(View.GONE);
             verifyImage.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             tvVerifiedStatus.setVisibility(View.VISIBLE);
             verifyImage.setVisibility(View.GONE);
 

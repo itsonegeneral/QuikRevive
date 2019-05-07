@@ -62,7 +62,7 @@
                      android:fontFamily="@font/roboto"
                      android:maxLines="1"
                      android:paddingStart="5dp"
-                     android:text="srithik1999@gmail.com"
+                     android:text="User"
                      android:textColor="#000"
                      android:textSize="16sp" />
 

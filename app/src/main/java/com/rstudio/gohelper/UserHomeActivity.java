@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.onesignal.OneSignal;
 import com.rstudio.gohelper.UserFragments.ResponsesFragment;
 import com.rstudio.gohelper.UserFragments.SettingsFragment;
 import com.rstudio.gohelper.UserFragments.UserHomeFragment;
@@ -34,6 +35,11 @@ public class UserHomeActivity extends AppCompatActivity {
         navView = findViewById(R.id.navMenu_UserHome);
         navView.setOnNavigationItemSelectedListener(listener);
         getPermissions();
+
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
 
     }
 

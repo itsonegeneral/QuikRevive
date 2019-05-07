@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +20,7 @@ import com.rstudio.gohelper.UserLoginActivity;
  */
 public class SettingsFragment extends Fragment {
 
-    Button bt_Logout;
+    FrameLayout bt_Logout;
     FirebaseAuth auth;
     RelativeLayout layout;
 

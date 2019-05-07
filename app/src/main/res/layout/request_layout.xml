@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView_Notification"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="3dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="3dp"
+    app:cardBackgroundColor="#8cabde"
+    app:cardCornerRadius="3dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+
+        <TextView
+            android:id="@+id/tv_reqType_Not"
+            style="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:text="This is the titile"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/tv_Date_ReqLayout"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_Description_ReqLayout"
+            android:layout_alignStart="@+id/tv_Description_ReqLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/roboto"
+            android:gravity=""
+            android:text="10/10/2018"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_marginBottom="3dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/tv_Description_ReqLayout"
+            android:layout_width="369dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_reqType_Not"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="3dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:maxLines="3"
+            android:text="This is a sample notification"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_Description_ReqLayout"
+            android:layout_alignStart="@+id/tv_Description_ReqLayout"
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Status : "
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_statusRequestUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000" />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

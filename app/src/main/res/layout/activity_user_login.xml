@@ -26,13 +26,14 @@
 
     <LinearLayout
         android:elevation="5dp"
+
         android:id="@+id/ll_UserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/user_loginbackground"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="30dp">
 
         <android.support.design.widget.TextInputLayout
             android:background="@drawable/round_edittext"
@@ -116,15 +117,6 @@
             android:textColor="#000"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_adminLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Admin Login"
-            android:textColor="#000"
-            android:textSize="16sp" />
 
     </LinearLayout>
 

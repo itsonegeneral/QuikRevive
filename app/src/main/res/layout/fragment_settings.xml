@@ -5,13 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".UserFragments.SettingsFragment">
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Logout"
-        android:textAllCaps="false"
+    <FrameLayout
+        android:layout_margin="4dp"
+        android:padding="15dp"
+        android:elevation="5dp"
         android:id="@+id/bt_logoutUser"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/ripple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Logout"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
 
 </RelativeLayout>
